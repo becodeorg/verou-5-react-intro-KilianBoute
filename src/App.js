@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from "react";
+import "./App.css";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import PostIt from "./PostIt";
+import DroppableArea from "./DroppableArea";
 
 function App() {
+  const postits = new Array(5).fill(null);
+  const listPostits = postits.map((postit, index) => {
+    return <PostIt key={index} />;
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <DroppableArea>
+        <div className="App">
+          <h1>TO DO</h1>
+          {listPostits}
+        </div>
+      </DroppableArea>
+    </DndProvider>
   );
 }
 

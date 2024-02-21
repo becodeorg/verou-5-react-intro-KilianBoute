@@ -1,5 +1,10 @@
 import React from "react";
 
-export default function Postit({ todo }) {
-  return <div className="post-it">{todo.text}</div>;
+export default function Postit({ todo, deleteTodo }) {
+  return (
+    <div className="post-it">
+      {todo.text}
+      <button onClick={() => deleteTodo(todo.id)}>X</button>
+    </div>
+  );
 }

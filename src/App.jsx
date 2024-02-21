@@ -26,6 +26,12 @@ function App() {
     });
   }
 
+  function deleteTodo(id) {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => todo.id !== id);
+    });
+  }
+
   return (
     <>
       <div>
@@ -34,7 +40,7 @@ function App() {
         <TodoForm onSubmit={addTodo} />
       </div>
       <div>
-        <PostitBoard todos={todos} />
+        <PostitBoard todos={todos} deleteTodo={deleteTodo} />
       </div>
     </>
   );

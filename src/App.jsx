@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import PostitBoard from "./PostitBoard";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -40,7 +42,13 @@ function App() {
         <TodoForm onSubmit={addTodo} />
       </div>
       <div>
-        <PostitBoard todos={todos} deleteTodo={deleteTodo} />
+        <DndProvider debugMode={true} backend={HTML5Backend}>
+          <PostitBoard
+            todos={todos}
+            deleteTodo={deleteTodo}
+            setTodos={setTodos}
+          />
+        </DndProvider>
       </div>
     </>
   );

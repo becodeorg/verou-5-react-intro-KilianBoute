@@ -16,6 +16,7 @@ export default function PostitBoard({ todos, deleteTodo, setTodos }) {
           })
         );
       }
+      console.log("In movePostit: left: " + left + " top: " + top + " merge: ");
     },
     [todos, setTodos]
   );
@@ -27,6 +28,16 @@ export default function PostitBoard({ todos, deleteTodo, setTodos }) {
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
+        console.log(
+          "left: " +
+            left +
+            " top: " +
+            top +
+            " delta: " +
+            delta.x +
+            " " +
+            delta.y
+        );
         movePostit(item.id, left, top);
       },
     }),
